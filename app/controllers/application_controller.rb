@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   protect_from_forgery with: :exception
 
+  def protect_against_forgery?
+    false
+  end
+
   protected
     def authorize
       unless User.find_by(id: session[:user_id])

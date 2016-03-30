@@ -39,10 +39,11 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderNotifier.received(@order).deliver
+        OrderNotifier.submitted(@order).deliver
         format.html { redirect_to store_url, notice: I18n.t('.thanks') }
         format.json { render :show, status: :created, location: @order }
       else
+        OrderNotifier.unsubmitted(@order).deliver
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

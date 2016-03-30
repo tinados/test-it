@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'carrierwave', '0.10.0'
 
+gem 'haml-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -48,5 +50,6 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'erb2haml'
+  gem 'quiet_assets'
 end
 
