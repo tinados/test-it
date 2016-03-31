@@ -16,9 +16,12 @@ Rails.application.routes.draw do
     get :who_bought, on: :member
     post :import_csv, on: :collection
   end
+  
+  resources :orders do
+    get :send_report, on: :collection
+  end
 
   scope '(:locale)' do
-    resources :orders
     resources :line_items
     resources :carts
     root 'store#index', as: 'store', via: :all

@@ -12,4 +12,14 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def self.as_csv  
+    column_names = %w{name address email pay_type}
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |item|
+        csv << [item.name, item.address, item.email, item.pay_type].map(&:strip)
+      end
+    end
+  end
+
 end

@@ -23,14 +23,8 @@
           = hidden_div_if(@cart.line_items.empty?, id: 'cart') do
             = render @cart
         %ul
-          %li
-            %a{:href => "http://www...."}= t('.home')
-          %li
-            %a{:href => "http://www..../faq"}= t('.questions')
-          %li
-            %a{:href => "http://www..../news"}= t('.news')
-          %li
-            %a{:href => "http://www..../contact"}= t('.contact')
+          %li= link_to t('.store'), store_path
+          %li= link_to t('.cart'), carts_path
         - if session[:user_id]
           %ul
             %li= link_to 'Orders', orders_path

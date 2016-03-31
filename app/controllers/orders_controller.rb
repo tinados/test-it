@@ -74,6 +74,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def send_report
+    @user = User.find(session[:user_id])
+    UserMailer.all_orders_email(@user).deliver_now
+    redirect_to orders_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

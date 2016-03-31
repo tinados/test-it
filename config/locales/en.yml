@@ -24,8 +24,8 @@ en:
   layouts:
     application:
       title: "Pragmatic Bookshelf"
-      home: "Home"
-      questions: "Questions"
+      store: "Store"
+      login: "Log in"
       news: "News"
       contact: "Contact"
 
