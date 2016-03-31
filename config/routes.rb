@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   
   resources :products do
     get :who_bought, on: :member
+    post :import_csv, on: :collection
   end
 
   scope '(:locale)' do

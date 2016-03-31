@@ -17,11 +17,11 @@
       = @page_title || t('.title')
     #columns
       #side
+        %p
+          Time #{Time.now}
         - if @cart
           = hidden_div_if(@cart.line_items.empty?, id: 'cart') do
             = render @cart
-        %p
-          Time #{Time.now}
         %ul
           %li
             %a{:href => "http://www...."}= t('.home')

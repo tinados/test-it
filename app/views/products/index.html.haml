@@ -8,6 +8,7 @@
         %dl
           %dt= product.title
           %dd= truncate(strip_tags(product.description), length: 80)
+          %span.price= number_to_currency(product.price)
       %td.list_actions
         = link_to 'Show', product
         %br/
@@ -17,3 +18,9 @@
           data: { confirm: 'Are you sure?' }           |
 %br/
 = link_to 'New product', new_product_path
+= link_to 'Export CSV', products_path(:csv)
+%div
+  %h3 Import a CSV File
+  = form_tag import_csv_products_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import CSV"

@@ -5,6 +5,11 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @products.as_csv }
+    end
   end
 
   # GET /products/1
@@ -67,9 +72,16 @@ class ProductsController < ApplicationController
     if stale?(@latest_order)
       respond_to do |format|
         format.atom
+      end
     end
   end
-end
+
+  def import_csv
+    Product.import(params[:file])
+    redirect_to products_url, notice: "Products imported."
+  rescue
+    redirect_to products_url, notice: "Invalid CSV file format."
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
