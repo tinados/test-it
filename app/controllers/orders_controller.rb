@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
 
   def send_report
     @user = User.find(session[:user_id])
-    UserMailer.all_orders_email(@user).deliver_now
+    UserMailer.delay.all_orders_email(@user)
     redirect_to orders_url
   end
 
